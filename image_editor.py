@@ -124,7 +124,7 @@ def _resize_to_multiple(image: Image.Image, multiple: int = 8, max_size: int = 5
 def build_ui():
     import gradio as gr
 
-    with gr.Blocks(title="Local AI Image Editor", theme=gr.themes.Soft()) as demo:
+    with gr.Blocks(title="Local AI Image Editor") as demo:
         gr.Markdown(
             """
             # Local AI Image Editor
@@ -188,7 +188,7 @@ def build_ui():
             inputs=[input_image, instruction],
         )
 
-    return demo
+    return demo, gr
 
 
 # ---------------------------------------------------------------------------
@@ -240,5 +240,5 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--cli":
         run_cli()
     else:
-        demo = build_ui()
-        demo.launch(share=False, server_name="0.0.0.0", server_port=7860)
+        demo, gr = build_ui()
+        demo.launch(share=False, server_name="0.0.0.0", server_port=7860, theme=gr.themes.Soft())
